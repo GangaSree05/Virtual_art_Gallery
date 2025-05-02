@@ -1,0 +1,26 @@
+.art-showcase {
+    padding: 20px;
+    text-align: center;
+    background: #800020;
+  }
+  
+  .gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .art-image {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .art-image:hover {
+    transform: scale(1.05);
+  }
+  

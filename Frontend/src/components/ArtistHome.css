@@ -1,0 +1,95 @@
+.artist-home {
+    font-family: 'Segoe UI', sans-serif;
+    color:#ffffff;
+    background: #fdfdfd;
+    min-height: 100vh;
+    background: url("../assets/bg.jpg") no-repeat center center/cover;
+  }
+  
+  .artist-navbar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .artist-navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .artist-navbar ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  
+  .artist-navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .artist-navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  .hero-section {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('../assets/artist-bg.jpg') no-repeat center/cover;
+    color:white;
+
+  }
+
+  .hero-section h1{
+    color: white;
+  }
+
+  .hero-section p{
+    color: white;
+  }
+  
+  .gallery-preview {
+    padding: 60px 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+  }
+  
+  .gallery-preview h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .artist-feature {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: beige;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 40px;
+  }
+  

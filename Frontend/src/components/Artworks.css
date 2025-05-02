@@ -1,0 +1,90 @@
+.artworks-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .art-thumbnail {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .art-thumbnail:hover {
+    transform: scale(1.05);
+  }
+  
+  .art-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .art-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+  }
+  
+  .zoomed-art {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .wishlist-btn,
+  .cart-btn {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .wishlist-btn {
+    background: #ffcc00;
+    color: black;
+  }
+  
+  .cart-btn {
+    background: #007bff;
+    color: white;
+  }
+  
+  .wishlist-btn:hover {
+    background: #e6b800;
+  }
+  
+  .cart-btn:hover {
+    background: #0056b3;
+  }
+  
