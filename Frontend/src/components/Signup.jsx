@@ -1,37 +1,61 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 import "./Signup.css";
 
 const Signup = () => {
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("buyer"); // Default role
   const navigate = useNavigate();
-  const [role, setRole] = useState(""); 
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    if (role === "artist") {
-      navigate("/artist-home");
-    } else if (role === "buyer") {
-      navigate("/buyer-home");
-    } else {
-      alert("Please select a role");
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    try {
+      console.log("event triggered");
+      const req = await axios.post("https://yoga-pose-guide.onrender.com/signup", {
+        firstname,
+        lastname,
+        username,
+        email,
+        password,
+        role,
+      });
+      console.log(req);
+      alert(req.data.response);
+      if (req.data.signupStatus) {
+        navigate("/login");
+      } else {
+        navigate("/signup");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
-    <div className="signup-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
+    <div className='body'>
+      <div className='container'>
+        <form method="POST" onSubmit={handleSignUp}>
+          FirstName : <input type="text" value={firstname} onChange={(e) => setFirstName(e.target.value)} required />
+          LastName : <input type="text" value={lastname} onChange={(e) => setLastName(e.target.value)} required />
+          UserName : <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} required />
+          Email : <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          Password : <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          
+          <label>Select Role:</label>
+          <select value={role} onChange={(e) => setRole(e.target.value)} required>
+            <option value="buyer">Buyer</option>
+            <option value="artist">Artist</option>
+          </select>
 
-        <div className="role-selection">
-          <button type="button" className={role === "artist" ? "selected" : ""} onClick={() => setRole("artist")}>Artist</button>
-          <button type="button" className={role === "buyer" ? "selected" : ""} onClick={() => setRole("buyer")}>Buyer</button>
-        </div>
-
-        <button type="submit">Sign Up</button>
-      </form>
+          <button type="submit">Signup</button>
+        </form>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
+      </div>
     </div>
   );
 };
