@@ -1,61 +1,58 @@
-import { useState } from 'react';
+// Signup.jsx
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import "./Signup.css";
+import { useNavigate } from 'react-router-dom';
+import './Signup.css';
 
 const Signup = () => {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("buyer"); // Default role
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'buyer' });
   const navigate = useNavigate();
 
-  const handleSignUp = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      console.log("event triggered");
-      const req = await axios.post("https://yoga-pose-guide.onrender.com/signup", {
-        firstname,
-        lastname,
-        username,
-        email,
-        password,
-        role,
-      });
-      console.log(req);
-      alert(req.data.response);
-      if (req.data.signupStatus) {
-        navigate("/login");
+      const res = await axios.post('http://localhost:5000/api/signup', form);
+      alert(res.data.message);
+      if (form.role === 'buyer') {
+        navigate('/buyer-home');
       } else {
-        navigate("/signup");
+        navigate('/artist-home');
       }
     } catch (err) {
-      console.log(err);
+      alert(err.response?.data?.message || 'Signup failed');
+      
     }
   };
 
   return (
-    <div className='body'>
-      <div className='container'>
-        <form method="POST" onSubmit={handleSignUp}>
-          FirstName : <input type="text" value={firstname} onChange={(e) => setFirstName(e.target.value)} required />
-          LastName : <input type="text" value={lastname} onChange={(e) => setLastName(e.target.value)} required />
-          UserName : <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} required />
-          Email : <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          Password : <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          
-          <label>Select Role:</label>
-          <select value={role} onChange={(e) => setRole(e.target.value)} required>
-            <option value="buyer">Buyer</option>
-            <option value="artist">Artist</option>
-          </select>
-
-          <button type="submit">Signup</button>
-        </form>
-        <p>Already have an account? <Link to="/login">Login</Link></p>
-      </div>
+    <div className="auth-form-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Signup</h2>
+        <input
+          type="text"
+          placeholder="Name"
+          required
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
+        <select onChange={(e) => setForm({ ...form, role: e.target.value })}>
+          <option value="buyer">Buyer</option>
+          <option value="artist">Artist</option>
+        </select>
+        <button type="submit">Signup</button>
+        <p>Already have an account? <a href="/login">Login</a></p>
+      </form>
     </div>
   );
 };
