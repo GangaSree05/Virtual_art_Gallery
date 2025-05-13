@@ -1,19 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Add this for navigation
 import "./Cart.css";
 
 const Cart = () => {
-  const [selectedArt, setSelectedArt] = useState(null);
+  const navigate = useNavigate();
+  const [selectedItems, setSelectedItems] = useState([]);
+
   const artworks = [
     { id: 1, name: "Sunset Bliss", price: 500, artist: "Alice Doe", img: "/art567.jpg" },
     { id: 2, name: "Ocean Waves", price: 750, artist: "Bob Smith", img: "/art1234.jpg" },
   ];
 
-  const handleArtworkClick = (art) => {
-    setSelectedArt(art);
+  const handleSelect = (id) => {
+    setSelectedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
-  const closePopup = () => {
-    setSelectedArt(null);
+  const handleCheckout = () => {
+    const selectedArtworks = artworks.filter((art) => selectedItems.includes(art.id));
+    navigate("/checkout", { state: { selectedArtworks } });
   };
 
   return (
@@ -21,23 +27,23 @@ const Cart = () => {
       <h2>Your Cart</h2>
       <div className="cart-grid">
         {artworks.map((art) => (
-          <div key={art.id} className="cart-item" onClick={() => handleArtworkClick(art)}>
+          <div key={art.id} className="cart-item">
+            <input
+              type="checkbox"
+              checked={selectedItems.includes(art.id)}
+              onChange={() => handleSelect(art.id)}
+            />
             <img src={art.img} alt={art.name} />
             <p>{art.name}</p>
+            <p>${art.price}</p>
           </div>
         ))}
       </div>
 
-      {selectedArt && (
-        <div className="billing-popup">
-          <div className="billing-content">
-            <h3>Billing Details</h3>
-            <p><strong>Artwork:</strong> {selectedArt.name}</p>
-            <p><strong>Artist:</strong> {selectedArt.artist}</p>
-            <p><strong>Price:</strong> ${selectedArt.price}</p>
-            <button className="close-btn" onClick={closePopup}>Checkout</button>
-          </div>
-        </div>
+      {selectedItems.length > 0 && (
+        <button className="checkout-btn" onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
       )}
     </div>
   );

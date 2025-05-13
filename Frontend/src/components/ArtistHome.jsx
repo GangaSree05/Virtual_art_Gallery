@@ -10,6 +10,7 @@ const ArtistHome = () => {
         <ul>
           <li><Link to="/uploaded-arts">Uploaded Arts</Link></li>
           <li><Link to="/upload-arts">Upload Arts</Link></li>
+          <li><Link to="/soldarts">Sold Arts</Link></li>
           <li><Link to="/artistprofile">Profile</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>

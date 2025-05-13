@@ -13,6 +13,9 @@ import UploadedArts from "./components/uploaded arts";
 import Contact from "./components/Contact";
 import UploadArts from "./components/uploadarts";
 import ArtistProfile from "./components/Artistprofile";
+import Checkout from "./components/Checkout";
+import SoldArts from "./components/SoldArts";
+
 
 
 function App() {
@@ -31,6 +34,8 @@ function App() {
       <Route path="/uploaded-arts" element={<UploadedArts/>} />
       <Route path="/upload-arts" element={<UploadArts/>} />
       <Route path="/artistprofile" element={<ArtistProfile/>} />
+      <Route path="/checkout" element={<Checkout/>} />
+      <Route path="/soldarts" element={<SoldArts/>} />
       
     </Routes>
   );

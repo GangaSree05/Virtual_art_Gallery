@@ -53,4 +53,9 @@
     margin-top: 10px;
     border-radius: 10px;
   }
-  
+.upload-form input[type="number"] {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

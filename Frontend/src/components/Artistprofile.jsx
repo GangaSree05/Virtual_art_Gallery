@@ -8,33 +8,32 @@ const ArtistProfile = () => {
   const artist = {
     name: "Aarav Mehta",
     email: "aarav.art@example.com",
-    bio: "Contemporary artist inspired by nature and emotions.",
+    bio: "Contemporary artist inspired by nature and emotions, creating thought-provoking works that explore the human experience.",
     uploadedArts: 24,
     soldArts: 10,
     revenue: 85000,
+    profileImage: "https://via.placeholder.com/150", // Use an actual image here
   };
 
   const handleLogout = () => {
-    // You can clear user state or token here if needed
     navigate("/"); // Redirect to home page
   };
 
   return (
     <div className="artist-profile">
       <div className="profile-header">
-        <h2>Artist Profile</h2>
+        <h1>Artist Profile</h1>
       </div>
 
       <div className="profile-details">
+        <div className="profile-image">
+          <img src={artist.profileImage} alt={artist.name} />
+        </div>
+
         <div className="info">
-          <h3>Name:</h3>
-          <p>{artist.name}</p>
-
-          <h3>Email:</h3>
-          <p>{artist.email}</p>
-
-          <h3>Bio:</h3>
-          <p>{artist.bio}</p>
+          <h2>{artist.name}</h2>
+          <p className="bio">{artist.bio}</p>
+          <p className="email">Email: <a href={`mailto:${artist.email}`}>{artist.email}</a></p>
         </div>
 
         <div className="stats">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./uploaded arts.css";
+import "./SoldArts.css";
 
-const UploadedArts = () => {
+const SoldArts = () => {
   const [uploadedArts, setUploadedArts] = useState([
     {
       id: 1,
@@ -37,7 +37,7 @@ const UploadedArts = () => {
 
   return (
     <div className="uploaded-arts">
-      <h2>Your Uploaded Artworks</h2>
+      <h2>Sold Artworks</h2>
       {uploadedArts.length === 0 ? (
         <p className="no-arts">You haven't uploaded any artworks yet.</p>
       ) : (
@@ -63,4 +63,4 @@ const UploadedArts = () => {
   );
 };
 
-export default UploadedArts;
+export default SoldArts;

@@ -46,13 +46,9 @@ const Profile = () => {
         <div className="orders-tabs">
           {[
             "Orders",
-            "Returns",
-            "Messages",
-            "Addresses",
-            "Payment Methods",
+                        "Addresses",
             "Wish Lists",
-            "Recently Viewed Products",
-            "Account Settings",
+           
             "Sign Out"
           ].map(tab => (
             <span

@@ -1,61 +1,33 @@
-import React, { useState } from "react";
-import "./Contact.css";
+import React from 'react';
+import './Contact.css';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
-  };
-
+const ContactPage = () => {
   return (
     <div className="contact-container">
-      <h2>Contact Us</h2>
-      <p>Feel free to reach out to us with any questions or feedback!</p>
+      <header className="contact-header">Contact Us</header>
 
-      {submitted && <p className="success-message">✔ Message Sent Successfully!</p>}
+      <main className="contact-main">
+        <div className="contact-form-wrapper">
+          <h2>We'd love to hear from you</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="4"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        ></textarea>
-        <button type="submit">Send</button>
-      </form>
+          <form className="contact-form">
+            <label htmlFor="name">Name</label>
+            <input type="text" id="name" placeholder="Your Name" />
+
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" />
+
+            <label htmlFor="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Your message..."></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </main>
+
+      <footer className="contact-footer">© 2025 Art Gallery</footer>
     </div>
   );
 };
 
-export default Contact;
+export default ContactPage;
